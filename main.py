@@ -4,7 +4,10 @@ board = [[0,0,0, 0,0,0, 0,0,0],  [0,0,0, 0,0,0, 0,0,0],  [0,0,0, 0,0,0, 0,0,0],
          [0,0,0, 0,0,0, 0,0,0],  [0,0,0, 0,0,0, 0,0,0],  [0,0,0, 0,0,0, 0,0,0], 
          [0,0,0, 0,0,0, 0,0,0],  [0,0,0, 0,0,0, 0,0,0],  [0,0,0, 0,0,0, 0,0,0]]
 
+meta = [0,0,0, 0,0,0, 0,0,0]
+
 player = 0
+
 grid = 4
 
 # Display will become irrelevant when a GUI is made
@@ -31,27 +34,30 @@ def move(box):
     global grid
     if board[grid][box] == 0:
         board[grid][box] = player+1
+    print(board)
     grid = box
 
+# WIP
 def check(list_grid):
     for i in [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]]:
-        if list_grid[i][0] == list_grid[i][1] == list_grid[i][2] != 0:
-            for i in range(9):
-                board[list_grid]
-
-
+        print(i)
+        print(i[2])
+        print(board[list_grid][i[0]] == board[list_grid][i[1]] == board[list_grid][i[2]] != 0)
+        if board[list_grid][i[0]] == board[list_grid][i[1]] == board[list_grid][i[2]] != 0:
+            for j in range(9):
+                board[list_grid][j] = board[list_grid][[i][0]]
+                meta[list_grid] = player+1
+                print(meta)
 
 # Mainloop
 while True:
     player %= 2
     display()
     print('P' + str(player+1))
-    try:
-        move(int(input('Number 1-9: '))-1)
-        player += 1
-    except:
-        print('Invalid Input')
 
+    move(int(input('Number 1-9: '))-1)
+    player += 1
+    check(grid)
 
 #########################
 #Kapishh add a conditional to make sure that when you enter the same value, it says "value already chosen"
