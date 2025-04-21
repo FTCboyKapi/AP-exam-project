@@ -18,7 +18,7 @@ player = 0
 i=0
 while i == 0:
     try:
-        grid = int(input('Initial Grid: ')) - 1
+        grid = 4
         i+=1
     except:
         None
@@ -57,7 +57,7 @@ def display():
 
 
 
-# Move function creates an X or O in an empty space
+####### Move function creates an X or O in an empty space #########
 def move(box):
     global grid
     global player
@@ -78,15 +78,7 @@ def move(box):
         player -= 1
 
 
-
-
-
-
-
-
-
-
-
+### CHECKS THE GRID FOR IF YOU WIN ##########
 
 def check(list_grid):
     global meta
@@ -99,6 +91,10 @@ def check(list_grid):
             for j in range(9):
                 board[list_grid][j] = player
                 meta[list_grid] = player
+
+
+
+
     for i in [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]]:
         if meta[i[0]] == board[i[1]] == board[i[2]] != 0:
             print('P' + str(player) + 'Wins')
@@ -111,7 +107,7 @@ display()
 
 
 
-# Mainloop
+###### MAINLOOP ######
 while True:
     try:
         player %= 2
@@ -120,10 +116,8 @@ while True:
 
 
 
-        print('P' + str(player))
-        move(int(input('Number 1-9: '))-1)
+        print('PLAYER ' + str(player))
+        move(int(input('Pick a Number 1-9 : '))-1)
     except:
         display()
         print('Invalid Input')
-
-
