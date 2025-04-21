@@ -1,20 +1,32 @@
-#CODE FOR THE BOARD AYUSH/KAPISHH
+#CODE FOR THE BOARD ~AYUSH
 ################################################################################
 board = [[0,0,0, 0,0,0, 0,0,0],  [0,0,0, 0,0,0, 0,0,0],  [0,0,0, 0,0,0, 0,0,0],
          [0,0,0, 0,0,0, 0,0,0],  [0,0,0, 0,0,0, 0,0,0],  [0,0,0, 0,0,0, 0,0,0],
          [0,0,0, 0,0,0, 0,0,0],  [0,0,0, 0,0,0, 0,0,0],  [0,0,0, 0,0,0, 0,0,0]]
 
 
+
+
 meta = [0,0,0, 0,0,0, 0,0,0]
+
+
 
 
 player = 0
 
 
-grid = 4
+i=0
+while i == 0:
+    try:
+        grid = int(input('Initial Grid: ')) - 1
+        i+=1
+    except:
+        None
 
 
 ans = 0
+
+
 
 
 # Display will become irrelevant when a GUI is made
@@ -22,6 +34,8 @@ ans = 0
 def display():
     global board
     global grid
+
+
 
 
     dp = '-----------------------------\n'
@@ -41,10 +55,14 @@ def display():
     board[grid] = [0 if i == '⁕' else i for i in board[grid]]
 
 
+
+
 # Move function creates an X or O in an empty space
 def move(box):
     global grid
     global player
+
+
 
 
     if board[grid][box] == 0:
@@ -52,7 +70,7 @@ def move(box):
         check(grid)
         grid = box
         display()
-        if meta[box] == 0:
+        if meta[box] != 0:
             grid = int(input('Choose any grid'))
     else:
         display()
@@ -64,9 +82,16 @@ def move(box):
 
 
 
-# WIP
+
+
+
+
+
+
 def check(list_grid):
     global meta
+
+
 
 
     for i in [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]]:
@@ -79,7 +104,11 @@ def check(list_grid):
             print('P' + str(player) + 'Wins')
 
 
+
+
 display()
+
+
 
 
 # Mainloop
@@ -89,6 +118,8 @@ while True:
         player += 1
 
 
+
+
         print('P' + str(player))
         move(int(input('Number 1-9: '))-1)
     except:
@@ -96,7 +127,3 @@ while True:
         print('Invalid Input')
 
 
-
-
-#########################
-#Kapishh add a conditional to make sure that when you enter the same value, it says "value already chosen"
