@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+# Ultimate Tic Tac Toe
+
 #CODE FOR THE BOARD ~AYUSH
 ################################################################################
 board = [[0,0,0, 0,0,0, 0,0,0],  [0,0,0, 0,0,0, 0,0,0],  [0,0,0, 0,0,0, 0,0,0],
@@ -16,17 +19,15 @@ player = 0
 
 
 i=0
-while i == 0:
-    try:
-        grid = 4
-        i+=1
-    except:
-        None
+#Used for which grid you want to start at
 
-
-ans = 0
-
-
+# while i == 0:
+#     try:
+#         grid = 4
+#         i+=1
+#     except:
+#         None
+grid=4
 
 
 # Display will become irrelevant when a GUI is made
@@ -34,7 +35,6 @@ ans = 0
 def display():
     global board
     global grid
-
 
 
 
@@ -78,13 +78,10 @@ def move(box):
         player -= 1
 
 
-### CHECKS THE GRID FOR IF YOU WIN ##########
+### CHECKS THE GRID FOR IF YOU WIN ###
 
 def check(list_grid):
     global meta
-
-
-
 
     for i in [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]]:
         if board[list_grid][i[0]] == board[list_grid][i[1]] == board[list_grid][i[2]] != 0:
@@ -106,18 +103,56 @@ display()
 
 
 
+#####################################################################
+# this is the old conditional statment
+# while True:
+#     try:
+#         player %= 2
+#         player += 1
 
-###### MAINLOOP ######
+#         print('PLAYER ' + str(player))
+#         player_move= move(int(input('Pick a Number 1-9 : '))-1)
+#     except:
+#         display()
+#         print('Invalid Input')
+
+
+######################################
+#Re worked conditionals (Kapishh Rajan)
+
 while True:
     try:
+        # Alternate between players 1 and 2
+        player %= 2
+        player += 1
+
+        print('PLAYER ' + str(player))
+    
+        # Validate input and ensure it's within the range 1-9
+        player_input = int(input('Pick a Number 1-9: '))
+        if not (1<= int(player_input) <= 9):
+            print("input must be between 1 and 9")
+        
+        player_move = move(int(player_input) - 1)
+
+### checks if there are any errors in the input
+
+    except ValueError as value_error:
+        print(f"Invalid Input: {value_error} - Please enter a number between 1 and 9.")
+        
+    except IndexError as index_error:
+        print(f"Invalid Input: {index_error} - Please enter a number between 1 and 9.")
+
+    except Exception as exception:
+        display()
+        print(f"An error occurred: {exception} - Please try again.")
+
+#Keeps the player number if there is any error present 
+    if ValueError or IndexError or Exception == True:
         player %= 2
         player += 1
 
 
+    
 
 
-        print('PLAYER ' + str(player))
-        move(int(input('Pick a Number 1-9 : '))-1)
-    except:
-        display()
-        print('Invalid Input')
