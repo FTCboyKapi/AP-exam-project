@@ -32,27 +32,31 @@ grid=4
 
 # Display will become irrelevant when a GUI is made
 # List comprehension: https://docs.python.org/3/glossary.html#term-list-comprehension
-def display():
-    global board
-    global grid
+
+############################################################# 
+###Terminal display### 
+
+# def display():
+#     global board
+#     global grid
 
 
 
-    dp = '-----------------------------\n'
-    board[grid] = ['⁕' if i == 0 else i for i in board[grid]]
+#     dp = '-----------------------------\n'
+#     board[grid] = ['⁕' if i == 0 else i for i in board[grid]]
    
-    for i in range(3):
-        for j in range(3):
-            for k in range(3):
-                dp += '| '
-                for l in range(3):
-                    dp += str(board[3*i+k][3*j+l]) + ' '
-                dp += '| '
-            dp += '\n'
-        dp += '-----------------------------\n'
+#     for i in range(3):
+#         for j in range(3):
+#             for k in range(3):
+#                 dp += '| '
+#                 for l in range(3):
+#                     dp += str(board[3*i+k][3*j+l]) + ' '
+#                 dp += '| '
+#             dp += '\n'
+#         dp += '-----------------------------\n'
    
-    print(dp.replace('0', '•').replace('1', 'X').replace('2', 'O'))
-    board[grid] = [0 if i == '⁕' else i for i in board[grid]]
+#     print(dp.replace('0', '•').replace('1', 'X').replace('2', 'O'))
+#     board[grid] = [0 if i == '⁕' else i for i in board[grid]]
 
 
 
@@ -69,13 +73,15 @@ def move(box):
         board[grid][box] = player
         check(grid)
         grid = box
-        display()
+        player += 1
+        player %= 2
+
+        # display()
         if meta[box] != 0:
             grid = int(input('Choose any grid'))
     else:
-        display()
+        # display()
         print('Square Taken')
-        player -= 1
 
 
 ### CHECKS THE GRID FOR IF YOU WIN ###
@@ -99,12 +105,12 @@ def check(list_grid):
 
 
 
-display()
+# display()
 
 
 
 #####################################################################
-# this is the old conditional statment
+# this is the old conditional statment (Kapishh Rajan)
 # while True:
 #     try:
 #         player %= 2
@@ -144,7 +150,7 @@ while True:
         print(f"Invalid Input: {index_error} - Please enter a number between 1 and 9.")
 
     except Exception as exception:
-        display()
+        # display()
         print(f"An error occurred: {exception} - Please try again.")
 
 #Keeps the player number if there is any error present 
@@ -153,6 +159,6 @@ while True:
         player += 1
 
 
-    
 
+    
 
