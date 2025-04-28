@@ -4,10 +4,6 @@ import turtle
 from turtle import RawTurtle, ScrolledCanvas, TurtleScreen
 from math import floor
 
-
-
-
-
 def draw_x(x, y):
     c.penup()
     c.goto(x,y)
@@ -36,7 +32,6 @@ def draw_circle(x, y):
     c.penup()
 
 
-
 root = tk.Tk()
 
 root.title("Ultimate Tic Tac Toe")
@@ -49,20 +44,13 @@ canvas.grid(padx=2, pady=2, row=0, column=0, rowspan=10, columnspan=10)
 
 c = turtle.RawTurtle(canvas)
 c.speed(0)
-
 c.penup()
 c.pensize(15)
 
-for i in (135*1.5, -135*1.5):
-    c.goto(-600, i)
-    c.pendown()
-    c.forward(1200)
-    c.penup()
-
-c.setheading(90)
-
-for i in (135*1.5, -135*1.5):
-    c.goto(i, -600)
+# Ayush- drawing thick border lines
+for i in range(4):
+    c.setheading([0, 0, 90, 90][i])
+    c.goto([-600, -600, 135*1.5, -135*1.5][i], [135*1.5, -135*1.5, -600, -600][i])
     c.pendown()
     c.forward(1200)
     c.penup()
@@ -70,23 +58,29 @@ for i in (135*1.5, -135*1.5):
 buttons = []
 placeholder = tk.PhotoImage()
 
-x=0
+# 
+player=0
 def jp_move(row, col):
-    global x
+    list_grid, box = (floor(col/3)+3*floor(row/3), col%3 + row%3*3)
+    replace(row, col)
+
+# Hamza
+def replace(row, col):
+    global player
     i=row * 9 + col 
     button = buttons[i]
-    if x == 0:
+# destroys the button and places an X or an O in the empty space
+    if player == 0:
         button.destroy()
-        draw_x((col-4) * 135,(row-4) * -135)
-        x+=1
-        x%=2   
+        draw_x((col-4) * 135,(row-4) * -135)     
     else:
         button.destroy()
         draw_circle((col-4) * 135,(row-4) * -135)
-        x+=1
-        x%=2
+# changes the active player
+    player+=1
+    player%=2
 
-
+# Hamza - CITE SOURCES
 for row in range(9):
     root.rowconfigure(row,minsize=100, weight=1)
     
