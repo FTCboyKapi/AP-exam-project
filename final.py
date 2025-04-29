@@ -4,6 +4,16 @@ import turtle
 from turtle import RawTurtle, ScrolledCanvas, TurtleScreen
 from math import floor
 
+#############################################################
+#Displays the instructions on the screen for the players to see. 
+#(Kapishh Rajan)
+print("Welcome to Ultimate tic-tac-toe, this is a 2 player game where your goal is to place your markers (X and 0) into your desired positions to try and get 3 in a row.")
+print("You can either try 3 in a row horizontally, 3 in a row vertically, or 3 in a row diagonaly")
+print("But this is ULTIMATE tic-tac-toe, its not just one grid, now you got 6 grids that you have to fill out.")
+print("Your goal is not only to get 3 in a row and win the grid, but also win 3 grids in a row in the same fashion as you would win the grids")
+print("The move you pick in the grid will correspond to the grid your opponant will start in.")
+print("May be best player win!!!!")
+
 ##################################################################################################################################################################################################################################################################################################
 #CODE FOR THE BOARD ~AYUSH
 
