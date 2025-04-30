@@ -90,6 +90,7 @@ def display():
 
 anygrid = True
 ####### Move function creates an X or O in an empty space #########
+#Kapishh Rajan
 def move(list_grid, box):
     global grid
     global anygrid
@@ -183,7 +184,7 @@ for i in range(4):
 buttons = []
 placeholder = tk.PhotoImage()
 
-# Ayush
+# Kapishh Rajan
 def jp_move(row, col):
     global player
     list_grid, box = (floor(col/3)+3*floor(row/3), col%3 + row%3*3)
